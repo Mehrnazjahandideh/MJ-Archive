@@ -1,0 +1,1164 @@
+/* ۱. تنظیمات پایه و ریست کردن مرورگر */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+    /* ۱. فونت و رنگ متن */
+    font-family: 'Playfair Display', serif;
+    color: #2c2c2c;
+    margin: 0;
+    padding: 0;
+
+    /* ۲. تنظیم عکس پس‌زمینه (استفاده از background-image به جای background خالی) */
+    background-image: url('./1782027139327.jpg');
+    
+    /* ۳. جلوگیری از تکرار */
+    background-repeat: no-repeat;
+    
+    /* ۴. پوشش کل صفحه بدون تغییر شکل */
+    background-size: cover;
+    
+    /* ۵. ثابت ماندن پس‌زمینه موقع اسکرول (بسیار مهم برای تمیز بودن کار) */
+    background-attachment: fixed;
+    
+    /* ۶. مرکز کردن عکس */
+    background-position: center;
+}
+/* ۲. بخش هیرو (تصویر کل صفحه) */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* ارتفاع کل صفحه */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+a {
+  text-decoration: none;   /* حذف خط زیر */
+  color: inherit;          /* رنگ مثل بقیه متن */
+}
+/* تصویر پس‌زمینه */
+.hero-art {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* پر کردن صفحه بدون تغییر شکل */
+    z-index: 1;
+    filter: sepia(30%) brightness(0.9);
+}
+
+/* ۳. منوی بالای صفحه (روی عکس) */
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+}
+
+.logo {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    border: 1px solid #2c2c2c;
+    padding: 5px 12px;
+}
+
+/* رفع مشکل عمودی بودن و نقطه‌های منو */
+.main-nav ul {
+    list-style: none; /* حذف نقطه‌ها */
+    display: flex;    /* افقی کردن منو */
+    gap: 30px;        /* فاصله بین گزینه‌ها */
+}
+
+.main-nav ul li a {
+    text-decoration: none;
+    color: #2c2c2c;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+/* ۴. محتوای وسط صفحه */
+.hero-content {
+    position: relative;
+    z-index: 5;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.welcome-text {
+    font-size: 12px;
+    letter-spacing: 5px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.main-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(40px, 10vw, 85px); /* ریسپانسیو کردن خودکار سایز متن */
+    letter-spacing: 8px;
+    line-height: 1.2;
+    margin: 15px 0;
+}
+
+.divider {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.subtitle {
+    font-size: clamp(14px, 2vw, 18px);
+    font-style: italic;
+    margin-bottom: 40px;
+    word-spacing: 5px;
+}
+
+/* دکمه سبز معروف */
+.museum-btn {
+    display: inline-block;
+    background-color: #2d4336;
+    color: #e5dac3;
+    padding: 15px 45px;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    border: 1px solid #3e5346;
+    transition: all 0.3s ease;
+}
+
+.museum-btn:hover {
+    background-color: #1e2e25;
+    padding: 15px 55px; /* کمی بزرگتر شدن در هوور */
+}
+
+/* ۵. ریسپانسیو (برای موبایل) */
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column; /* در موبایل لوگو و منو زیر هم بیایند */
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .main-nav ul {
+        gap: 15px; /* فاصله کمتر در موبایل */
+    }
+
+    .main-nav ul li a {
+        font-size: 11px;
+    }
+    
+    .hero-content {
+        width: 90%;
+    }
+}
+/* ایجاد فاصله بین بخش بالا و آرشیو */
+.section-spacer {
+    height: 80px;
+    background-color: transparent;
+}
+
+.archive-section {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* استایل ردیف‌ها */
+.archive-row {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    padding: 60px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ستون سمت چپ */
+.archive-sidebar {
+    padding-right: 20px;
+}
+
+.roman-num {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.row-title {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.row-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #444;
+}
+
+.view-collection {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+}
+
+/* گرید ۳ ستونه (ردیف اول) */
+.grid-3-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* گرید ۵ ستونه (ردیف‌های بعدی) */
+.grid-5-col {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 50px;
+}
+
+/* کارت‌ها و هاور */
+.hover-box {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #ccc;
+}
+
+/* عکس‌های ردیف اول بزرگتر باشند */
+.row-large .hover-box { height: 380px; }
+.row-small .hover-box { height: 220px; }
+
+.hover-box img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.6s ease;
+}
+
+.original-img { opacity: 0; }
+.hover-box:hover .original-img { opacity: 1; }
+.hover-box:hover .edited-img { opacity: 0; }
+
+/* جزئیات زیر کارت‌های بزرگ */
+.card-info {
+    padding-top: 20px;
+}
+
+.card-info h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.card-info p {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.cat-tag {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* ریسپانسیو */
+@media (max-width: 1024px) {
+    .archive-row { grid-template-columns: 1fr; }
+    .grid-3-col, .grid-5-col { grid-template-columns: repeat(2, 1fr); }
+}
+/* =============================== */
+/* Footer Styles */
+/* =============================== */
+
+.site-footer {
+    background-color: #1b261f; /* رنگ سبز تیره یشمی مطابق دکمه و فوتر عکس */
+    /* background: url(./1782265304501-019ef749-cc1a-7502-b3b3-4972e152d02b.png); */
+        background: url(./1782266208495-019ef757-bc6c-731b-83d4-2b07bb6ad43a.png);
+
+    color: #e5dac3; /* رنگ متن کرم روشن */
+    padding: 100px 8% 40px;
+    font-family: 'Playfair Display', serif;
+      background-repeat: no-repeat;
+    
+    /* ۴. پوشش کل صفحه بدون تغییر شکل */
+    background-size: cover;
+    
+    /* ۵. ثابت ماندن پس‌زمینه موقع اسکرول (بسیار مهم برای تمیز بودن کار) */
+    background-attachment: fixed;
+    
+    /* ۶. مرکز کردن عکس */
+    background-position: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+    padding-bottom: 80px;
+}
+
+/* استایل نقل قول */
+.footer-quote {
+    flex: 1;
+    text-align: center;
+}
+
+.quote-text {
+    font-size: 28px;
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+}
+
+.footer-symbol {
+    font-size: 20px;
+    opacity: 0.7;
+}
+
+/* استایل خبرنامه */
+.footer-newsletter {
+    flex: 1;
+    max-width: 400px;
+}
+
+.newsletter-title {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.newsletter-desc {
+    font-size: 14px;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+/* فرم ایمیل */
+.subscribe-form {
+    display: flex;
+    border-bottom: 1px solid rgba(229, 218, 195, 0.3);
+    padding-bottom: 10px;
+}
+
+.email-input {
+    background: transparent;
+    border: none;
+    color: #e5dac3;
+    width: 100%;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    outline: none;
+}
+
+.email-input::placeholder {
+    color: rgba(229, 218, 195, 0.4);
+    font-style: italic;
+}
+
+.submit-btn {
+    background: transparent;
+    border: none;
+    color: #e5dac3;
+    font-size: 20px;
+    cursor: pointer;
+    padding-left: 15px;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    transform: translateX(5px);
+}
+
+/* بخش کپی رایت و لینک‌ها */
+.footer-bottom {
+    border-top: 1px solid rgba(229, 218, 195, 0.1);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.social-links {
+    display: flex;
+    gap: 25px;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #e5dac3;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    opacity: 1;
+}
+
+/* ریسپانسیو برای موبایل */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-newsletter {
+        max-width: 100%;
+        margin-top: 40px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+    }
+}/* تم تیره و فونت‌ها */
+.dark-page { 
+    background-color: #121212; 
+    color: #24221f; 
+    font-family: 'EB Garamond', serif;
+    background: url(./آناتومی.png);
+    background-repeat: no-repeat;
+    
+    /* ۴. پوشش کل صفحه بدون تغییر شکل */
+    background-size: cover;
+    
+    /* ۵. ثابت ماندن پس‌زمینه موقع اسکرول (بسیار مهم برای تمیز بودن کار) */
+    background-attachment: fixed;
+    
+    /* ۶. مرکز کردن عکس */
+    background-position: center;
+
+}
+
+.layout { 
+    display: flex; 
+}
+
+/* ستون چپ */
+.left-side {
+    width: 60px; 
+    border-right: 1px solid rgba(209, 199, 183, 0.1);
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between;
+    padding: 50px 0; 
+    position: fixed; 
+    height: 100vh;
+}
+
+.vert-text {
+    writing-mode: vertical-rl; 
+    transform: rotate(180deg);
+    font-family: 'Cinzel', serif; 
+    letter-spacing: 5px; 
+    font-size: 11px; 
+    opacity: 0.5;
+}
+
+/* بدنه اصلی */
+.main-body { 
+    margin-left: 60px; 
+    padding: 80px 8%; 
+    width: 100%; 
+}
+
+.top-part h1 { 
+    font-size: 5rem; 
+    line-height: 0.8; 
+    margin-bottom: 20px; 
+    font-family: 'Playfair Display', serif;
+}
+
+.top-part h1 span { 
+    font-style: italic; 
+    color: #262927; 
+}
+
+.btn-back {
+    text-decoration: none;
+    color: #263629;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* بخش‌های بزرگ نقاشی */
+.big-drawings .draw-box {
+    display: grid; 
+    grid-template-columns: 1.4fr 1fr; 
+    gap: 60px; 
+    margin: 100px 0; 
+    align-items: center;
+}
+
+.big-drawings .draw-box.reverse { 
+    grid-template-columns: 1fr 1.4fr; 
+}
+
+.img-space {
+    position: relative; 
+    height: 600px; 
+    overflow: hidden; 
+    border: 1px solid rgba(209, 199, 183, 0.2);
+}
+
+.img-space img { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    transition: 0.8s; 
+}
+
+/* افکت قبل و بعد (هاور) */
+.hover-show .img-under { opacity: 0; }
+.hover-show:hover .img-under { opacity: 1; }
+.hover-show:hover .img-top { opacity: 0; }
+
+.hand-write {
+    font-size: 1.7rem; 
+    font-style: italic; 
+    color: #4d3d22; 
+    padding-left: 20px; 
+    border-left: 1px solid #7a8a7d;
+    margin-top: 20px;
+}
+
+/* گرید آناتومی */
+.sub-title { 
+    font-family: 'Cinzel', serif; 
+    font-size: 1.1rem; 
+    margin: 80px 0 30px; 
+    opacity: 0.7;
+}
+
+.practice-grid {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px;
+}
+
+.mini-box { 
+    position: relative; 
+    height: 380px; 
+    overflow: hidden; 
+}
+
+.mini-box img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    position: absolute; 
+    transition: 0.5s; 
+}
+
+.mini-box .info { 
+    position: absolute; 
+    bottom: 10px; 
+    left: 10px; 
+    font-family: 'Cinzel', serif; 
+    font-size: 10px; 
+    background: rgba(0,0,0,0.7); 
+    padding: 3px 7px; 
+    z-index: 10;
+}
+
+/* کلاژ اسکچ‌ها */
+.sketches-section { 
+    margin-top: 150px; 
+}
+
+.pile-of-paper { 
+    position: relative; 
+    height: 800px; 
+}
+
+.p { 
+    position: absolute; 
+    width: 280px; 
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.5); 
+    transition: 0.4s; 
+    filter: sepia(20%); 
+}
+
+/* موقعیت‌های نامنظم عکس‌ها */
+.p1 { top: 0; left: 5%; transform: rotate(-3deg); }
+.p2 { top: 30px; left: 30%; transform: rotate(4deg); z-index: 2; }
+.p3 { top: -20px; right: 10%; transform: rotate(-1deg); }
+.p4 { top: 320px; left: 10%; transform: rotate(2deg); z-index: 3; }
+.p5 { top: 280px; right: 25%; transform: rotate(-5deg); }
+.p6 { top: 440px; left: 40%; transform: rotate(1deg); }
+.p7 { top: 180px; left: 15%; transform: rotate(6deg); }
+.p8 { top: 500px; right: 5%; transform: rotate(-2deg); }
+
+.p:hover { 
+    transform: scale(1.1) rotate(0deg); 
+    z-index: 100; 
+    filter: sepia(0%); 
+}
+
+/* ریسپانسیو */
+@media (max-width: 900px) {
+    .practice-grid { grid-template-columns: 1fr; }
+    .big-drawings .draw-box { grid-template-columns: 1fr; }
+    .pile-of-paper { height: auto; display: flex; flex-wrap: wrap; gap: 15px; }
+    .p { position: static; width: 100%; }
+}
+
+
+
+
+/* 22222222222222222222222222222 */
+
+ @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+    /* ================= Reset & Variables ================= */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --parchment: #e8dfc8;
+      --ink: #1a1510;
+      --ink-light: #3a2e20;
+      --border-color: rgba(26, 21, 16, 0.2);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--parchment);
+      color: var(--ink); 
+      font-family: 'EB Garamond', serif;
+      overflow-x: hidden;
+    }
+
+    /* Texture Overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ================= Utilities (کلاس‌های پرکاربرد) ================= */
+    .img-vintage {
+      object-fit: cover;
+      /* mix-blend-mode: multiply; */
+    }
+    
+    .divider {
+      position: absolute;
+      top: 0;
+      left: 48px;
+      right: 48px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border-color), transparent);
+    }
+
+    .divider-full {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border-color), transparent);
+    }
+
+    .mini-label {
+      font-family: 'EB Garamond', serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: var(--ink);
+      border-radius: 50%;
+    }
+
+    /* ================= Typography ================= */
+    .title-main {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(48px, 7vw, 88px);
+      line-height: 1.0;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .title-section {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(26px, 4vw, 50px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    
+.poem {
+  font-family: "Vazirmatn", serif;
+  font-size: 34px;
+  line-height: 2.4;
+  margin-left: 120px;
+  direction: rtl;
+  text-align: right;
+  color: #1f1f1f;
+  opacity: 0.9;
+}
+    .title-italic {
+      font-style: italic;
+    }
+
+    .text-body {
+      font-size: 13.5px;
+      line-height: 1.85;
+      opacity: 0.65;
+    }
+
+    /* ================= Navigation ================= */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: linear-gradient(to bottom, rgba(232, 223, 200, 0.92) 0%, transparent 100%);
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'EB Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      opacity: 0.75;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    /* ================= Main Grid Layout ================= */
+    .wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+    }
+
+    .col-left {
+      border-right: 1px solid rgba(26, 21, 16, 0.12);
+    }
+
+    /* ================= Component: Hero ================= */
+    .hero {
+      padding-top: 120px;
+      min-height: 100vh;
+      position: relative;
+      padding-left: 48px;
+      padding-right: 48px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .circle-badge {
+      position: absolute;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 70px;
+      border: 1px solid rgba(26, 21, 16, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .circle-inner {
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(26, 21, 16, 0.2);
+      border-radius: 50%;
+    }
+
+    /* عکس هدر بزرگ شد */
+    .hero-img {
+      position: absolute;
+      top: 80px;
+      right: -50px;
+      width: 350px;
+      height: 450px;
+      z-index: 1;
+      /* filter: sepia(25%) saturate(65%) brightness(0.92); */
+    }
+
+    .hero-content {
+      margin-top: 100px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .subtitle {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 20px;
+    }
+
+    /* چشم بزرگ شد */
+    .hero-eye {
+      position: absolute;
+      bottom: 220px;
+      left: 48px;
+      width: 250px;
+      height: 160px;
+      object-position: center 20%;
+      /* filter: sepia(30%) saturate(60%) brightness(0.88); */
+    }
+
+    .btn-enter {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      margin-top: auto;
+      padding-bottom: 60px;
+      opacity: 0.7;
+      transition: all 0.3s;
+    }
+
+    .btn-enter::after {
+      content: '————';
+      letter-spacing: -0.1em;
+      font-size: 10px;
+    }
+
+    .btn-enter:hover {
+      opacity: 1;
+      gap: 18px;
+    }
+
+    .deco-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--ink-light), transparent);
+      opacity: 0.3;
+    }
+
+    /* ================= Layout Grids ================= */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px; /* فاصله بیشتر شد */
+      align-items: start;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px; /* فاصله بیشتر شد */
+    }
+
+    .grid-uneven {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 15px; /* فاصله بیشتر شد */
+    }
+
+    .flex-group {
+      display: flex;
+      gap: 20px; /* فاصله بیشتر شد */
+      align-items: flex-end;
+    }
+
+    .flex-col {
+      display: flex;
+      flex-direction: column;
+      gap: 15px; /* فاصله بیشتر شد */
+      flex: 1;
+    }
+
+    /* ================= Reusable Image Classes (سایزها بزرگ شدند) ================= */
+    .img-round {
+      width: 100%;
+      aspect-ratio: 1/1; /* اتوماتیک کاملا گرد و بزرگ می‌شود */
+      height: auto;
+      border-radius: 50%;
+      /* filter: sepia(20%) saturate(75%) brightness(0.9); */
+    }
+
+    .img-box {
+      width: 100%;
+      height: 350px; /* از ۱۶۰ به ۳۵۰ */
+      filter: sepia(20%) saturate(75%) brightness(0.9);
+    }
+
+    .img-tall {
+      width: 100%;
+      height: 600px; /* از ۳۶۰ به ۶۰۰ */
+      object-position: center top;
+      /* filter: sepia(15%) saturate(75%) brightness(0.85); */
+    }
+
+    .img-small {
+      width: 100%;
+      height: 250px; /* از ۱۳۰ به ۲۵۰ */
+      /* filter: sepia(20%) saturate(70%) brightness(0.88); */
+    }
+
+    .img-mini {
+      width: 150px; /* بزرگ شد */
+      height: 180px; /* بزرگ شد */
+      filter: sepia(25%) saturate(70%) brightness(0.88);
+    }
+
+    /* ================= Sections (Left) ================= */
+    .section-about {
+      padding: 80px 48px 60px;
+      position: relative;
+    }
+
+    .section-master {
+      padding: 60px 48px 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .master-desc {
+      max-width: 380px;
+      margin: 0 auto 60px;
+    }
+
+    .section-museum {
+      padding: 60px 48px;
+      position: relative;
+    }
+
+    .starburst {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .starburst svg {
+      width: 80px;
+      height: 80px;
+      opacity: 0.35;
+    }
+
+    /* ================= Sections (Right) ================= */
+    .section-story {
+      padding: 120px 48px 60px;
+      position: relative;
+    }
+
+    .story-header {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 40px;
+    }
+
+    .memory-block {
+      margin-top: 80px;
+      position: relative;
+    }
+
+    .memory-inner {
+      padding-top: 50px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .senses-block {
+      margin-top: 80px;
+      position: relative;
+    }
+
+    .senses-inner {
+      padding-top: 40px;
+    }
+
+    .text-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(26, 21, 16, 0.12);
+    }
+
+    .deco-row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 60px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .deco-item {
+      width: 65px;
+      height: 65px;
+      border: 1px solid var(--border-color);
+      /* filter: sepia(25%) saturate(65%); */
+    }
+
+    .large-figure {
+      margin-top: 80px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .large-figure img {
+      width: 280px; /* از ۱۶۰ به ۲۸۰ */
+      height: 400px; /* از ۲۲۰ به ۴۰۰ */
+      object-position: center;
+      /* filter: sepia(20%) saturate(60%) brightness(0.85); */
+      border: 1px solid rgba(26, 21, 16, 0.1);
+    }
+
+    .final-text {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(26, 21, 16, 0.12);
+      text-align: center;
+    }
+
+    /* ================= Footers ================= */
+    .footer-local {
+      padding: 40px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(26, 21, 16, 0.15);
+    }
+
+    .footer-local--left {
+      margin-top: 30px;
+    }
+
+    .footer-local--right {
+      margin-top: 0;
+    }
+
+    .footer-enter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.55;
+    }
+
+    /* ================= Responsive ================= */
+    @media (max-width: 768px) {
+      .wrapper {
+        grid-template-columns: 1fr;
+      }
+      
+      nav {
+        padding: 16px 20px;
+      }
+
+      .hero, 
+      .section-about, 
+      .section-master, 
+      .section-museum, 
+      .section-story, 
+      .footer-local {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .grid-2, 
+      .grid-3, 
+      .grid-uneven, 
+      .memory-inner, 
+      .text-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-img {
+        right: 0;
+        opacity: 0.4;
+      }
+    }
